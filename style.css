@@ -1,0 +1,89 @@
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+@property --offset {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0;
+}
+
+body{
+    height: calc(100vh - 8em);
+    padding: 4em;
+    color: rgba(255,255,255,.75);
+    font-family: 'Anonymous Pro', monospace;  
+    background-color: rgb(25,25,25);  
+  }
+
+.intro{
+    position: relative;
+    top: 50%;  
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);   
+}
+
+.typewriter {
+    animation: typewriter 4s steps(29) 1s 1 normal both,
+    blinkTextCursor 750ms steps(29) infinite normal;
+  }
+  
+  @keyframes typewriter{
+    from{width: 0;}
+    to{width: 31.5em;}
+  }
+  @keyframes blinkTextCursor{
+    from{border-right-color: rgba(255,255,255,.75);}
+    to{border-right-color: transparent;} 
+}
+
+.options {
+    display: flex;
+    width: 70vw;
+    height: 50vw;
+    top: 25%;
+    font-family: "Anonymous Pro", monospace;
+    margin: 0 auto;
+    justify-content: space-evenly;
+}
+
+.option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 100px;
+    background-color: rgb(40,40,40);
+    border-radius: 10px;
+    font-family: "Anonymous Pro", monospace;
+}
+
+.smooth_underline {
+    color: white;
+    text-underline-offset: var(--offset, 0.2em);
+    text-decoration: underline 0.15em rgba(255, 255, 255, 0);
+    transition: --offset 300ms, text-decoration-color 300ms;
+}
+
+.smooth_underline:hover {
+    text-decoration-color: rgba(255, 255, 255, 1);
+  }
+
+.smooth_underline:hover,
+.smooth_underline:focus {
+    --offset: 0.4em;
+    text-decoration-color: rgba(255, 255, 255, 1);
+}
+
+.card {
+    width: 80%;
+    max-width: 700px;
+}
+
+.card-body {
+
+    padding: 40px;
+}

@@ -84,6 +84,40 @@ body{
 }
 
 .card-body {
-
     padding: 40px;
+}
+
+#inputloc {
+    display: inline-flex;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.textinp {
+    height: 1.5em;
+    width: 1em;
+    margin: 4px;
+
+    caret-color: transparent;
+    font-family: "Anonymous Pro", monospace;
+    text-align: center;
+}
+
+.nonchar {
+    height: 1.5em;
+    width: 1em;
+    margin: 4px;
+}
+
+.space {
+    height: 1.5em;
+    width: 1em;
+    margin: 4px;
+}
+
+.word {
+    border-radius: 4px;
+    background: rgba(50, 50, 50);
+    display: flex;
+    margin: 10px;
 }

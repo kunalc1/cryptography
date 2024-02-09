@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const button = document.querySelector("button");
     const quote = document.querySelector("blockquote p");
     const cite = document.querySelector("blockquote cite");
+    const input = document.getElementById("inputloc");
   
     async function updateQuote() {
       // Fetch a random quote from the Quotable API
@@ -12,6 +13,40 @@ document.addEventListener("DOMContentLoaded", () => {
         // Update DOM elements
         quote.textContent = data.content;
         cite.textContent = data.author;
+
+        input.innerHTML = "";
+        var word = document.createElement("div");
+        word.classList = "word";
+        for (let i = 0; i < quote.textContent.length; i++){
+          if (quote.textContent[i].match(/[a-z]/i)){
+            var textInput = document.createElement("input");
+            textInput.setAttribute("type", "text");
+            textInput.setAttribute("maxlength", 1);
+            textInput.classList = "textinp";
+            word.appendChild(textInput);
+          }
+          else if (quote.textContent[i] == ' '){
+            input.appendChild(word);
+
+
+            var nonchar = document.createElement("p");
+            nonchar.classList = "space";
+            nonchar.textContent = ' ';
+            input.appendChild(nonchar);
+
+
+            var word = document.createElement("div");
+            word.classList = "word";
+          }
+          else {
+            var nonchar = document.createElement("p");
+            nonchar.classList = "nonchar";
+            nonchar.textContent = quote.textContent[i];
+            word.appendChild(nonchar);
+          }
+        }
+
+        input.appendChild(word);
       } else {
         quote.textContent = "An error occured";
         console.log(data);
@@ -23,5 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // call updateQuote once when page loads
     updateQuote();
-  });
-  
+});
+
+

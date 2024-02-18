@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
             var textInput = document.createElement("input");
             textInput.setAttribute("type", "text");
             textInput.setAttribute("maxlength", 1);
+            textInput.setAttribute("id", char.toUpperCase()+"-"+charNum);
             textInput.classList = "textinp";
+            textInput.classList.add("letter"+char.toUpperCase());
+            textInput.classList.add("count"+charNum);
             word.appendChild(textInput);
           }
           else if (quote.textContent[i] == ' '){

@@ -16,17 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         input.innerHTML = "";
         var word = document.createElement("div");
+        var charNum = 0;
         word.classList = "word";
         for (let i = 0; i < quote.textContent.length; i++){
           if (quote.textContent[i].match(/[a-z]/i)){
             var textInput = document.createElement("input");
             textInput.setAttribute("type", "text");
             textInput.setAttribute("maxlength", 1);
-            textInput.setAttribute("id", char.toUpperCase()+"-"+charNum);
+            textInput.setAttribute("id", quote.textContent[i].toUpperCase()+"-"+charNum);
             textInput.classList = "textinp";
-            textInput.classList.add("letter"+char.toUpperCase());
+            textInput.classList.add("letter"+quote.textContent[i].toUpperCase());
             textInput.classList.add("count"+charNum);
             word.appendChild(textInput);
+            charNum+=1;
           }
           else if (quote.textContent[i] == ' '){
             input.appendChild(word);

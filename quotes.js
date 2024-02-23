@@ -1,3 +1,5 @@
+var quoteContent, charNum;
+
 document.addEventListener("DOMContentLoaded", () => {
   // DOM elements
   const button = document.querySelector("button");
@@ -16,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       input.innerHTML = "";
       var word = document.createElement("div");
-      var charNum = 0;
-      var quoteContent = quote.textContent+" ";
+      charNum = 0;
+      quoteContent = quote.textContent+" ";
       word.classList = "word";
       
       for (let i = 0; i < quoteContent.length; i++){
@@ -35,7 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
           addNonChar(currentChar, word);
         }
       }
-    } else {
+
+
+      setActive();
+    }
+    else {
       quote.textContent = "An error occured";
       console.log(data);
     }
@@ -50,25 +56,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 let addChar = function(char, charNum, word){
-var textInput = document.createElement("input");
-textInput.setAttribute("type", "text");
-textInput.setAttribute("maxlength", 1);
-textInput.setAttribute("id", char.toUpperCase()+"-"+charNum);
-textInput.classList = "textinp";
-textInput.classList.add("letter"+char.toUpperCase());
-textInput.classList.add("count"+charNum);
-word.appendChild(textInput);
+  var textInput = document.createElement("input");
+  textInput.setAttribute("type", "text");
+  textInput.setAttribute("maxlength", 1);
+  textInput.setAttribute("id", char.toUpperCase()+"-"+charNum);
+  textInput.classList = "textinp";
+  textInput.classList.add("letter"+char.toUpperCase());
+  textInput.classList.add("count"+charNum);
+  word.appendChild(textInput);
 }
 
 let addNonChar = function(char, word){
-var nonchar = document.createElement("p");
-nonchar.classList = "nonchar";
-nonchar.textContent = char;
-word.appendChild(nonchar);
+  var nonchar = document.createElement("p");
+  nonchar.classList = "nonchar";
+  nonchar.textContent = char;
+  word.appendChild(nonchar);
 }
 
 let setAttributes = function(element, attrs) {
-for(var key in attrs) {
-  element.setAttribute(key, attrs[key]);
+  for(var key in attrs) {
+    element.setAttribute(key, attrs[key]);
+  }
 }
+
+let setActive = function() {
+  var current = document.getElementsByClassName("count0")[0];
+  current.classList.add("active");
+  current.focus();
+  console.log("done");
 }
+
+let moveToNextBox = function(index) {
+  var nextIndex = index+1;
+  var current = document.getElementsByClassName("count"+index)[0];
+  if (nextIndex >= charNum){
+    nextIndex = 0;
+  }
+  var next = document.getElementsByClassName("count"+nextIndex)[0];
+  current.classList.remove("active");
+  next.classList.add("active");
+  next.focus();
+}
+
+addEventListener('keydown',function(e){
+  // console.log(e.key.toUpperCase().charCodeAt(0));
+  if(e.key.toUpperCase().charCodeAt(0)>64 && e.key.toUpperCase().charCodeAt(0)<91) {
+		if(e.ctrlKey || e.metaKey) { } else {
+			var thislet = e.key.toUpperCase();
+			var selected = document.getElementsByClassName("active")[0];
+
+      // console.log(selected.classList);
+      moveToNextBox(selected.id.substring(2,)-'0');
+      selected.value = thislet;
+      e.preventDefault();
+    }
+  }
+})

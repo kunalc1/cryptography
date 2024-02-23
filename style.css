@@ -115,3 +115,7 @@ body{
     display: flex;
     margin: 10px;
 }
+
+.active {
+    background-color: rgb(236, 236, 119);
+}

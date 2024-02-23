@@ -99,16 +99,24 @@ let moveToNextBox = function(index) {
 }
 
 addEventListener('keydown',function(e){
+	var thislet = e.key.toUpperCase();
+	var selected = document.getElementsByClassName("active")[0];
   // console.log(e.key.toUpperCase().charCodeAt(0));
-  if(e.key.toUpperCase().charCodeAt(0)>64 && e.key.toUpperCase().charCodeAt(0)<91) {
+  // console.log(e.keyCode);
+  if(e.keyCode>64 && e.keyCode<91) {
 		if(e.ctrlKey || e.metaKey) { } else {
-			var thislet = e.key.toUpperCase();
-			var selected = document.getElementsByClassName("active")[0];
-
+			// var thislet = e.key.toUpperCase();
+			// var selected = document.getElementsByClassName("active")[0];
       // console.log(selected.classList);
       moveToNextBox(selected.id.substring(2,)-'0');
       selected.value = thislet;
       e.preventDefault();
     }
+  }
+  else if (e.keyCode == 37 || e.keyCode == 8){
+	// backspace or left arrow
+    moveToPreviousBox(selected.id.substring(2,)-'0');
+    selected.value = "";
+    e.preventDefault();
   }
 })

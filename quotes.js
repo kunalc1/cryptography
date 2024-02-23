@@ -98,6 +98,18 @@ let moveToNextBox = function(index) {
   next.focus();
 }
 
+let moveToPreviousBox = function(index) {
+  var prevIndex = index-1;
+  var current = document.getElementsByClassName("count"+index)[0];
+  if (prevIndex < 0){
+    prevIndex = charNum-1;
+  }
+  var previous = document.getElementsByClassName("count"+prevIndex)[0];
+  current.classList.remove("active");
+  previous.classList.add("active");
+  previous.focus();
+}
+
 addEventListener('keydown',function(e){
 	var thislet = e.key.toUpperCase();
 	var selected = document.getElementsByClassName("active")[0];
